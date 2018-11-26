@@ -1,54 +1,16 @@
-<?php 
+<?php
+	include("includes/classes/Account.php");
+	include("includes/classes/Constants.php");
 
-function sanitizeFormPassword($inputText) {
-	$inputText = strip_tags($inputText);
-	return $inputText;
-}
+	$account = new Account();
 
-function sanitizeFormUsername($inputText) {
-	$inputText = strip_tags($inputText);
-	$inputText = str_replace(" ", "", $inputText);
-	return $inputText;
-}
-
-function sanitizeFormString($inputText) {
-	$inputText = strip_tags($inputText);
-	$inputText = str_replace(" ", "", $inputText);
-	$inputText = ucfirst(strtolower($inputText));
-	return $inputText;
-}
-
-if(isset($_POST['loginButton'])) {
-	//Login button was pressed
-	
-}
-
-if(isset($_POST['registerButton'])) {
-	//Register button was pressed
-	$username = sanitizeFormUsername($_POST['username']);
-	
-	$firstName = sanitizeFormString($_POST['firstName']);
-
-	$lastName = sanitizeFormString($_POST['lastName']);
-
-	$email = sanitizeFormString($_POST['email']);
-
-	$email2 = sanitizeFormString($_POST['email2']);
-
-	$password = sanitizeFormPassword($_POST['password']);
-
-	$password2 = sanitizeFormPassword($_POST['password2']);
-
-}
-
-
+	include("includes/handlers/register-handler.php");
+	include("includes/handlers/login-handler.php");
 ?>
-
-
 
 <html>
 <head>
-	<title>Welcome to Slotify!</title>
+	<title>Welcome to Spotifly!</title>
 </head>
 <body>
 
@@ -65,7 +27,7 @@ if(isset($_POST['registerButton'])) {
 			</p>
 
 			<button type="submit" name="loginButton">LOG IN</button>
-			
+
 		</form>
 
 
@@ -73,21 +35,26 @@ if(isset($_POST['registerButton'])) {
 		<form id="registerForm" action="register.php" method="POST">
 			<h2>Create your free account</h2>
 			<p>
+				<?php echo $account->getError(Constants::$usernameCharacters); ?>
 				<label for="username">Username</label>
 				<input id="username" name="username" type="text" placeholder="e.g. bartSimpson" required>
 			</p>
 
 			<p>
+				<?php echo $account->getError(Constants::$firstNameCharacters); ?>
 				<label for="firstName">First name</label>
 				<input id="firstName" name="firstName" type="text" placeholder="e.g. Bart" required>
 			</p>
 
 			<p>
+				<?php echo $account->getError(Constants::$lastNameCharacters); ?>
 				<label for="lastName">Last name</label>
 				<input id="lastName" name="lastName" type="text" placeholder="e.g. Simpson" required>
 			</p>
 
 			<p>
+				<?php echo $account->getError(Constants::$emailsDoNotMatch); ?>
+				<?php echo $account->getError($emailInvalid); ?>
 				<label for="email">Email</label>
 				<input id="email" name="email" type="email" placeholder="e.g. bart@gmail.com" required>
 			</p>
@@ -98,6 +65,9 @@ if(isset($_POST['registerButton'])) {
 			</p>
 
 			<p>
+				<?php echo $account->getError(Constants::$passwordsDoNotMatch); ?>
+				<?php echo $account->getError(Constants::$passwordNotAlphaNumeric); ?>
+				<?php echo $account->getError(Constants::$passwordCharacters); ?>
 				<label for="password">Password</label>
 				<input id="password" name="password" type="password" placeholder="Your password" required>
 			</p>
@@ -108,7 +78,7 @@ if(isset($_POST['registerButton'])) {
 			</p>
 
 			<button type="submit" name="registerButton">SIGN UP</button>
-			
+
 		</form>
 
 
