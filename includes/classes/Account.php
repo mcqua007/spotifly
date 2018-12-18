@@ -1,9 +1,11 @@
 <?php
 	class Account {
 
+		private $con;
 		private $errorArray;
 
 		public function __construct() {
+			$this->con = $con;
 			$this->errorArray = array();
 		}
 
@@ -22,6 +24,19 @@
 				return false;
 			}
 
+		}
+
+
+
+
+		private function insertUserDetails($un, $fn, $ln, $em, $pw){
+			$encryptedPW = md5($pw);
+			$profilePic = "assets/images/profile-pics/default-profile-pic.png";
+			$date = date("Y-m-d");
+
+		  $insert_users = "INSERT INTO users VALUES('', '$un','$fn', '$ln', '$encryptedPW', '$data', '$profilePic')";
+			$result = mysql_query($this->con, $insert_users);
+			return $result;
 		}
 
 		public function getError($error) {
