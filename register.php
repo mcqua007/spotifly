@@ -17,7 +17,7 @@
 
 <html>
 <head>
-	<title>Welcome to Slotify!</title>
+	<title>Welcome to Spotifly!</title>
 </head>
 <body>
 
@@ -25,6 +25,9 @@
 		<form id="loginForm" action="register.php" method="POST">
 			<h2>Login to your account</h2>
 			<p>
+				<div style="margin-bottom:10px; color: red;">
+					<?php echo $account->getError(Constants::$loginFailed); ?><br />
+				</div>
 				<label for="loginUsername">Username</label>
 				<input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. bartSimpson" required>
 			</p>
@@ -34,7 +37,7 @@
 			</p>
 
 			<button type="submit" name="loginButton">LOG IN</button>
-			
+
 		</form>
 
 
@@ -87,7 +90,7 @@
 			</p>
 
 			<button type="submit" name="registerButton">SIGN UP</button>
-			
+
 		</form>
 
 
