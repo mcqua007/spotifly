@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Welcome to Spotifly!</title>
+	<title>Welcome to Slotify!</title>
 </head>
 
 <body>
