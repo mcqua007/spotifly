@@ -18,7 +18,9 @@ else {
 </head>
 
 <body>
-	Hello!
+	  <div id="nowPlayingBarContainer">
+			
+		</div>
 </body>
 
 </html>
