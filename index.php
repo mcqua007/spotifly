@@ -1,16 +1,16 @@
 <?php
-		include("includes/config.php");
-		
-		//used to logout
-		//session_destroy(;)
+include("includes/config.php");
 
-		if(isset($_SESSION['userLoggedIn'])){
-			$userLoggedIn = $_SESSION['userLoggedIn'];
-		}
-		else {
-			header("Location: register.php");
-		}
- ?>
+//session_destroy(); LOGOUT
+
+if(isset($_SESSION['userLoggedIn'])) {
+	$userLoggedIn = $_SESSION['userLoggedIn'];
+}
+else {
+	header("Location: register.php");
+}
+
+?>
 
 <html>
 <head>
