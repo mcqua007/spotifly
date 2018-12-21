@@ -10,15 +10,19 @@ else{
 $album = new Album($con, $albumId);
 $artist = $album->getArtist();
 
-
-echo $album->getTitle() . "<br />";
-echo $artist->getName();
-
-
-
 ?>
 
+<div class="entityInfo">
+  <div class="leftSection">
+    <img src="<?php echo $album->getArtworkPath(); ?>" alt="Albm Artwork">
+  </div>
+    <div class="rightSection">
+      <h2><?php echo $album->getTitle(); ?></h2>
+      <p><?php echo $artist->getName(); ?></p>
+      <p><?php echo $album->getNumberOfSongs(); ?></p>
+    </div>
 
+</div>
 
 
 

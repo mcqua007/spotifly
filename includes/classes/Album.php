@@ -26,19 +26,23 @@
       $this->artworkPath = $album['artworkPath'];
 		}
 
-    public function getTitle(){
+    public function getTitle() {
       return $this->title;
     }
 
-    public function getArtist(){
+    public function getArtist() {
       return new Artist($this->con, $this->artistId);
     }
 
-    public function getGenre(){
+    public function getGenre() {
       return $this->genre;
     }
-    public function getArtworkPath(){
+    public function getArtworkPath() {
       return $this->artworkPath;
+    }
+    public function getNumberOfSongs() {
+      $songQuery = mysqli_query($this->con, "SELECT id FROM songs WHERE album='$this->id'");
+      return mysqli_num_rows($songQuery);
     }
 
   }
