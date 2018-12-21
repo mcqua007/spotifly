@@ -2,7 +2,7 @@
 	ob_start();
 	session_start();
 
-	$timezone = date_default_timezone_set("America/Los Angeles");
+	$timezone = date_default_timezone_set("America/Los_Angeles");
 
 	$con = mysqli_connect("localhost", "root", "root", "spotifly");
 
