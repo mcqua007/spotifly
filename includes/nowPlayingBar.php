@@ -21,6 +21,7 @@ $(document).ready(function() {
 
 function setTrack(trackId, newPlaylist, play) {
 	var tokenPassword = "54219872kJL9Z&*KI9O@";
+
 	   $.post("includes/handlers/ajax/getSongJson.php", {songId: trackId, token: tokenPassword}, function(data){
 			  var track = JSON.parse(data);
 			 $(".trackName span").text(track.title);
@@ -30,26 +31,35 @@ function setTrack(trackId, newPlaylist, play) {
 				 $(".artistName span").text(artist.name);
 			 });
 
-			 audioElement.setTrack(track.path);
-			 audioElement.play();
-		 });
+			 $.post("includes/handlers/ajax/getAlbumJson.php", {albumId: track.album, token: tokenPassword}, function(data){
+				var album = JSON.parse(data);
+				$(".albumLink img").attr("src", album.artworkPath);
+			});
+					audioElement.setTrack(track);
+					playSong();
+				});
 
-		if(play == true){
+				if(play == true) {
 					audioElement.play();
-		}
+				}
 }
 
 function playSong(){
-	$(".controlButton.play").hide();
-	$(".controlButton.pause").show();
-	audioElement.play();
-}
+	var tokenPass = "54219872kJL9Z&*KI9O@";
+	  if(audioElement.audio.currentTime == 0){
+	   	$.post("includes/handlers/ajax/updatePlays.php", {songId: audioElement.currentlyPlaying.id, token: tokenPass});
+	   }
 
-function pauseSong(){
-	$(".controlButton.pause").hide();
-	$(".controlButton.play").show();
-	audioElement.pause();
-}
+		$(".controlButton.play").hide();
+		$(".controlButton.pause").show();
+		audioElement.play();
+	}
+
+	function pauseSong() {
+		$(".controlButton.play").show();
+		$(".controlButton.pause").hide();
+		audioElement.pause();
+	}
 
 </script>
 
@@ -61,7 +71,7 @@ function pauseSong(){
 		<div id="nowPlayingLeft">
 			<div class="content">
 				<span class="albumLink">
-					<img src="https://i.ytimg.com/vi/rb8Y38eilRM/maxresdefault.jpg" class="albumArtwork">
+					<img src="" class="albumArtwork">
 				</span>
 
 				<div class="trackInfo">
