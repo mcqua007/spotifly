@@ -16,6 +16,11 @@ $(document).ready(function() {
 	currentPlaylist = <?php echo $jsonArray; ?>;
 	audioElement = new Audio();
 	setTrack(currentPlaylist[0], currentPlaylist, false);
+	updateVolumeProgressBar(audioElement.audio);
+
+	$("#nowPlayingBarContainer").on("mousedown touchstart mousemove touchmove", function (e) {
+		e.preventDefault(); //prevents defualt behavior on that even i.e. click soemthing would not actually click it
+	});
 
 	$(".playbackBar .progressBar").mousedown(function(){
 		mouseDown = true;
@@ -39,13 +44,19 @@ $(document).ready(function() {
 	$(".volumeBar .progressBar").mousemove(function(e){
 		if(mouseDown == true){
 			var percentage = e.offsetX / $(this).width();
-			audioElement.audio.volume = percentage;
+
+			if(percentage >= 0 && percentage <= 1){
+						audioElement.audio.volume = percentage;
+			}
 		}
 	});
 
 	$(".volumeBar .progressBar").mouseup(function(e){
-			var percentage = e.offsetX / $(this).width();
-			audioElement.audio.volume = percentage;
+		var percentage = e.offsetX / $(this).width();
+
+		if(percentage >= 0 && percentage <= 1){
+					audioElement.audio.volume = percentage;
+		}
 	});
 
 	$(document).mouseup(function(){
@@ -78,11 +89,11 @@ function setTrack(trackId, newPlaylist, play) {
 				$(".albumLink img").attr("src", album.artworkPath);
 			});
 					audioElement.setTrack(track);
-					playSong();
 				});
 
 				if(play == true) {
 					audioElement.play();
+					playSong();
 				}
 }
 
