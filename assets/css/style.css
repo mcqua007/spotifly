@@ -3,7 +3,9 @@ html, body {
 	margin: 0;
 	height: 100%;
 }
-
+*:focus {
+    outline:none;
+}
 * {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #fff;
@@ -359,12 +361,3 @@ body {
     color: #fff;
     margin-bottom: 7px;
 }
-
-
-
-
-
-
-
-
-
