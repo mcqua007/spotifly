@@ -1,6 +1,7 @@
 var currentPlaylist = [];
 var audioElement;
 var mouseDown = false;
+var currentIndex = 0;
 
 function formatTime(seconds) {
 	var time = Math.round(seconds);
@@ -47,7 +48,7 @@ function Audio() {
 			updateVolumeProgressBar(this);
 	});
 
-	this.setTrack = function(track) {
+	this.setTheTrack = function(track) {
 		this.currentlyPlaying = track;
 		this.audio.src = track.path;
 	}

@@ -71,11 +71,34 @@ function timeFromOffset(mouse, progressBar){
 	audioElement.setTime(seconds);
 }
 
+function nextSong(){
+	if(currentIndex == currentPlaylist.length - 1){
+		currentIndex = 0;
+	}
+	else {
+		currentIndex++;
+	}
+
+	var trackToPlay = currentPlaylist[currentIndex];
+
+		if(audioElement.audio.paused){
+				setTrack(trackToPlay, currentPlaylist, false);
+		}
+		else{
+				setTrack(trackToPlay, currentPlaylist, true);
+		}
+
+}
+
+
 
 function setTrack(trackId, newPlaylist, play) {
 	var tokenPassword = "54219872kJL9Z&*KI9O@";
 
 	   $.post("includes/handlers/ajax/getSongJson.php", {songId: trackId, token: tokenPassword}, function(data){
+
+			 currentIndex = currentPlaylist.indexOf(trackId);
+
 			  var track = JSON.parse(data);
 			 $(".trackName span").text(track.title);
 
@@ -88,7 +111,10 @@ function setTrack(trackId, newPlaylist, play) {
 				var album = JSON.parse(data);
 				$(".albumLink img").attr("src", album.artworkPath);
 			});
-					audioElement.setTrack(track);
+					audioElement.setTheTrack(track);
+					if(play == true) {
+					playSong();
+				 }
 				});
 
 				if(play == true) {
@@ -97,7 +123,7 @@ function setTrack(trackId, newPlaylist, play) {
 				}
 }
 
-function playSong(){
+	function playSong(){
 	var tokenPass = "54219872kJL9Z&*KI9O@";
 	  if(audioElement.audio.currentTime == 0){
 	   	$.post("includes/handlers/ajax/updatePlays.php", {songId: audioElement.currentlyPlaying.id, token: tokenPass});
@@ -166,7 +192,7 @@ function playSong(){
 						<img src="assets/images/icons/pause.png" alt="Pause">
 					</button>
 
-					<button class="controlButton next" title="Next button">
+					<button class="controlButton next" title="Next button" onclick="nextSong()">
 						<img src="assets/images/icons/next.png" alt="Next">
 					</button>
 
