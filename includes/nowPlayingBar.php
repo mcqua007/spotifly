@@ -124,6 +124,21 @@ function songEnded(){
 	}
 }
 
+function muteToggle() {
+	mute = !mute;
+	if(mute == true){
+	 	audioElement.audio.muted = true;
+		$("#volume").hide();
+		$("#volume-mute").show();
+	}
+	else{
+			audioElement.audio.muted = false;
+			$("#volume-mute").hide();
+			$("#volume").show();
+	}
+}
+
+
 function repeatToggle(){
 	if(audioElement.audio.loop == false){
 	 	audioElement.audio.loop = true;
@@ -275,8 +290,9 @@ function setTrack(trackId, newPlaylist, play) {
 		<div id="nowPlayingRight">
 			<div class="volumeBar">
 
-				<button class="controlButton volume" title="Volume button">
-					<img src="assets/images/icons/volume.png" alt="Volume">
+				<button class="controlButton volume" title="Volume button" onclick="muteToggle()">
+					<img id="volume" src="assets/images/icons/volume.png" alt="Volume">
+					<img id="volume-mute" src="assets/images/icons/volume-mute.png" alt="Volume Mute" style="display:none;">
 				</button>
 
 				<div class="progressBar">
