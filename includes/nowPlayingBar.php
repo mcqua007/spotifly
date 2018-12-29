@@ -63,7 +63,11 @@ $(document).ready(function() {
 		mouseDown = false;
 	});
 
+	songEnded();
+
 });
+
+
 
 function timeFromOffset(mouse, progressBar){
 	var percentage = mouse.offsetX / $(progressBar).width() * 100;
@@ -87,17 +91,59 @@ function nextSong(){
 		else{
 				setTrack(trackToPlay, currentPlaylist, true);
 		}
-
 }
 
+function previousSong(){
+	if(audioElement.audio.currentTime >= 5){
+		audioElement.setTime(0);
+	}
+ else {
+	 if(currentIndex == 0){
+	 currentIndex =	currentPlaylist.length - 1;
+	 }
+	 else {
+		 currentIndex--;
+	 }
+
+	 var trackToPlay = currentPlaylist[currentIndex];
+
+		 if(audioElement.audio.paused){
+				 setTrack(trackToPlay, currentPlaylist, false);
+		 }
+		 else{
+				 setTrack(trackToPlay, currentPlaylist, true);
+		 }
+ }
+}
+
+function songEnded(){
+	var aud = audioElement.audio.onended = function(){
+		console.log("The audio has ended");
+	 playSong();
+	 nextSong();
+	}
+}
+
+function repeatToggle(){
+	if(audioElement.audio.loop == false){
+	 	audioElement.audio.loop = true;
+		$("#repeat-icon").hide();
+		$("#repeat-active-icon").show();
+	}
+	else{
+			audioElement.audio.loop = false;
+			$("#repeat-active-icon").hide();
+			$("#repeat-icon").show();
+	}
+}
 
 
 function setTrack(trackId, newPlaylist, play) {
 	var tokenPassword = "54219872kJL9Z&*KI9O@";
 
-	   $.post("includes/handlers/ajax/getSongJson.php", {songId: trackId, token: tokenPassword}, function(data){
-
 			 currentIndex = currentPlaylist.indexOf(trackId);
+
+	   $.post("includes/handlers/ajax/getSongJson.php", {songId: trackId, token: tokenPassword}, function(data){
 
 			  var track = JSON.parse(data);
 			 $(".trackName span").text(track.title);
@@ -180,7 +226,7 @@ function setTrack(trackId, newPlaylist, play) {
 						<img src="assets/images/icons/shuffle.png" alt="Shuffle">
 					</button>
 
-					<button class="controlButton previous" title="Previous button">
+					<button class="controlButton previous" title="Previous button" onclick="previousSong()">
 						<img src="assets/images/icons/previous.png" alt="Previous">
 					</button>
 
@@ -196,9 +242,11 @@ function setTrack(trackId, newPlaylist, play) {
 						<img src="assets/images/icons/next.png" alt="Next">
 					</button>
 
-					<button class="controlButton repeat" title="Repeat button">
-						<img src="assets/images/icons/repeat.png" alt="Repeat">
+					<button class="controlButton repeat" title="Repeat button" onclick="repeatToggle()">
+						<img id="repeat-icon" src="assets/images/icons/repeat.png" alt="Repeat">
+						<img id="repeat-active-icon" src="assets/images/icons/repeat-active.png" style="display: none;"  alt="Repeat Active">
 					</button>
+
 
 				</div>
 

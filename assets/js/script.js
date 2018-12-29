@@ -63,5 +63,8 @@ function Audio() {
 	this.setTime = function(seconds){
 		this.audio.currentTime = seconds;
 	}
+	this.repeat = function(){
+		this.audio.loop;
+	}
 
 }
