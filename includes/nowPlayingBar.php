@@ -1,11 +1,27 @@
 <?php
-$songQuery = mysqli_query($con, "SELECT id FROM songs ORDER BY LIMIT 10");
+
 
 $resultArray = array();
 
-while($row = mysqli_fetch_array($songQuery)) {
-	array_push($resultArray, $row['id']);
+if(isset($_GET['id']) && isset($_GET['albumpage'])){
+	$albumId = $_GET['id'];
+	$songQuery = mysqli_query($con, "SELECT id FROM songs WHERE album = $albumId");
+
+	while($row = mysqli_fetch_array($songQuery)) {
+		array_push($resultArray, $row['id']);
+	}
+
 }
+else {
+	$songQuery2 = mysqli_query($con, "SELECT id FROM songs ORDER BY RAND() LIMIT 10");
+
+	while($row = mysqli_fetch_array($songQuery2)) {
+		array_push($resultArray, $row['id']);
+	}
+
+}
+
+
 
 $jsonArray = json_encode($resultArray);
 ?>
@@ -76,6 +92,7 @@ function timeFromOffset(mouse, progressBar){
 }
 
 function nextSong(){
+
 	if(currentIndex == currentPlaylist.length - 1){
 		currentIndex = 0;
 	}
