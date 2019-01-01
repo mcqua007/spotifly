@@ -20,6 +20,9 @@ function openPage(url){
 	}
 	console.log(encodedUrl);
 	$("#mainContent").load(encodedUrl);
+	$("body").scrollTop(0);
+
+	history.pushState(null, null, url);
 }
 function formatTime(seconds) {
 	var time = Math.round(seconds);

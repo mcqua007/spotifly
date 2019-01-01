@@ -212,28 +212,24 @@ function setTrack(trackId, newPlaylist, play) {
 
 	   	$.post("includes/handlers/ajax/getSongJson.php", {songId: trackId, token: tokenPassword}, function(data){
 
-			  var track = JSON.parse(data);
-			 $(".trackName span").text(track.title);
+				  var track = JSON.parse(data);
+				 $(".trackName span").text(track.title);
 
-			 $.post("includes/handlers/ajax/getArtistJson.php", {artistId: track.artist, token: tokenPassword}, function(data){
-				 var artist = JSON.parse(data);
-				 $(".artistName span").text(artist.name);
-			 });
+				 $.post("includes/handlers/ajax/getArtistJson.php", {artistId: track.artist, token: tokenPassword}, function(data){
+					 var artist = JSON.parse(data);
+					 $(".artistName span").text(artist.name);
+				 });
 
-			 $.post("includes/handlers/ajax/getAlbumJson.php", {albumId: track.album, token: tokenPassword}, function(data){
-				var album = JSON.parse(data);
-				$(".albumLink img").attr("src", album.artworkPath);
-			});
-					audioElement.setTheTrack(track);
-					if(play == true) {
-					playSong();
-				 }
+				 $.post("includes/handlers/ajax/getAlbumJson.php", {albumId: track.album, token: tokenPassword}, function(data){
+					var album = JSON.parse(data);
+					$(".albumLink img").attr("src", album.artworkPath);
 				});
+						audioElement.setTheTrack(track);
+						if(play == true) {
+						playSong();
+					 }
+	  	});
 
-				if(play == true) {
-					audioElement.play();
-					playSong();
-				}
 }
 
 	function playSong(){
