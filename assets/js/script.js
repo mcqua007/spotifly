@@ -22,7 +22,7 @@ function openPage(url){
 	$("#mainContent").load(encodedUrl);
 	$("body").scrollTop(0);
 
-	history.pushState(null, null, url);
+	history.pushState(null, null, url); //puts the url in the adress bar so it appears the user is changing pages
 }
 function formatTime(seconds) {
 	var time = Math.round(seconds);
