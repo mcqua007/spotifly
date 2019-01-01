@@ -13,8 +13,11 @@ var userLoggedIn;
 function openPage(url){
 	if(url.indexOf("?") == -1){
 		url = url + "?";
+		var encodedUrl = encodeURI(url + "userLoggedIn=" + userLoggedIn);
 	}
-	var encodedUrl = encodeURI(url + "&userLoggedIn=" + userLoggedIn);
+	else{
+		var encodedUrl = encodeURI(url + "&userLoggedIn=" + userLoggedIn);
+	}
 	console.log(encodedUrl);
 	$("#mainContent").load(encodedUrl);
 }

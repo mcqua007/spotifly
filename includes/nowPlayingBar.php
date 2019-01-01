@@ -3,7 +3,7 @@
 
 $resultArray = array();
 
-if(isset($_GET['id']) && isset($_GET['albumpage'])){
+if(isset($_GET['id'])){
 	$albumId = $_GET['id'];
 	$songQuery = mysqli_query($con, "SELECT id FROM songs WHERE album = $albumId");
 
