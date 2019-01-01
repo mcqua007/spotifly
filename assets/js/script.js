@@ -7,7 +7,17 @@ var currentIndex = 0;
 var mute = false;
 var repeat = false;
 var shuffle = false;
+var userLoggedIn;
 
+
+function openPage(url){
+	if(url.indexOf("?") == -1){
+		url = url + "?";
+	}
+	var encodedUrl = encodeURI(url + "&userLoggedIn=" + userLoggedIn);
+	console.log(encodedUrl);
+	$("#mainContent").load(encodedUrl);
+}
 function formatTime(seconds) {
 	var time = Math.round(seconds);
 	var minutes = Math.floor(time / 60); //Rounds down

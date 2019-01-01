@@ -8,6 +8,7 @@ include("includes/classes/Song.php");
 
 if(isset($_SESSION['userLoggedIn'])) {
 	$userLoggedIn = $_SESSION['userLoggedIn'];
+	echo "<script> userLoggedIn = '$userLoggedIn';</script>";
 }
 else {
 	header("Location: register.php");
@@ -17,7 +18,7 @@ else {
 
 <html>
 <head>
-	<title>Welcome to Slotify!</title>
+	<title>Welcome to Spotifly!</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="assets/js/script.js"></script>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
