@@ -3,9 +3,7 @@ html, body {
 	margin: 0;
 	height: 100%;
 }
-*:focus {
-    outline:none;
-}
+
 * {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #fff;
@@ -16,6 +14,10 @@ body {
     background-color: #181818;
     font-size: 14px;
     min-width: 720px;
+}
+.borderbottom{
+	border-bottom: 1px solid #939393;
+	margin-bottom: 20px;
 }
 
 #nowPlayingBarContainer {
@@ -360,4 +362,26 @@ body {
 .tracklistRow .trackInfo .trackName {
     color: #fff;
     margin-bottom: 7px;
+}
+
+.artistInfo {
+    text-align: center;
+}
+
+.button {
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 10px;
+    background-color: transparent;
+    font-weight: 500;
+    letter-spacing: 2px;
+    border: 2px solid #fff;
+    border-radius: 500px;
+    padding: 15px;
+    min-width: 130px;
+}
+
+.button.green {
+    background-color: #2ebd59;
+    border-color: #2ebd59;
 }
