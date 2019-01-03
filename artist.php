@@ -9,14 +9,18 @@ else {
 }
   $artist = new Artist($con, $artistId);
 ?>
+<script>
 
+
+
+</script>
 
 <div class="entityInfo">
   <div class="centerSection">
     <div class="artistInfo">
       <h1 class="artistName"> <?php echo $artist->getName(); ?> </h1>
       <div class="headerButtons">
-        <button class="button"> PLAY </button>
+        <button class="button" onclick="playFirstSongs()"> PLAY </button>
       </div>
     </div>
   </div>
@@ -99,6 +103,10 @@ else {
 		var tempSongIds = '<?php echo json_encode($songIdArray); ?>';
 		tempPlaylist = JSON.parse(tempSongIds);
 
+    function playFirstSongs(){
+      setTrack(tempPlaylist[0], tempPlaylist, true);
+    }
+    
 		</script>
 
 	</ul>

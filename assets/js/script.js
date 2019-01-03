@@ -24,6 +24,7 @@ function openPage(url){
 
 	history.pushState(null, null, url); //puts the url in the adress bar so it appears the user is changing pages
 }
+
 function formatTime(seconds) {
 	var time = Math.round(seconds);
 	var minutes = Math.floor(time / 60); //Rounds down
