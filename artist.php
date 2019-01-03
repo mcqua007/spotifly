@@ -1,6 +1,8 @@
 <?php
 include("includes/includedFiles.php");
 
+
+
 if(isset($_GET['id'])){
   $artistId = $_GET['id'];
 }
@@ -9,11 +11,7 @@ else {
 }
   $artist = new Artist($con, $artistId);
 ?>
-<script>
 
-
-
-</script>
 
 <div class="entityInfo">
   <div class="centerSection">
@@ -103,10 +101,7 @@ else {
 		var tempSongIds = '<?php echo json_encode($songIdArray); ?>';
 		tempPlaylist = JSON.parse(tempSongIds);
 
-    function playFirstSongs(){
-      setTrack(tempPlaylist[0], tempPlaylist, true);
-    }
-    
+
 		</script>
 
 	</ul>
