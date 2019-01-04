@@ -18,15 +18,18 @@
 
 		<div class="group">
 			<div class="navItem">
-				<span  role="link" tabindex="0" onclick="openPage('browse.php')" class="navItemLink">Browse</span>
+				<span  role="link" tabindex="0" onclick="openPage('browse.php')" class="navItemLink link">Browse</span>
+			</div>
+			<div class="navItem">
+				<span  role="link" tabindex="0" onclick="openPage('all-artists.php')" class="navItemLink link">Artists</span>
 			</div>
 
 			<div class="navItem">
-				<span role="link" tabindex="0" onclick="openPage('yourMusic.php')"  class="navItemLink">Your Music</span>
+				<span role="link" tabindex="0" onclick="openPage('yourMusic.php')"  class="navItemLink link">Your Music</span>
 			</div>
 
 			<div class="navItem">
-				<span role="link" tabindex="0" onclick="openPage('profile.php')"  class="navItemLink">Reece Kenney</span>
+				<span role="link" tabindex="0" onclick="openPage('profile.php')"  class="navItemLink link">Reece Kenney</span>
 			</div>
 		</div>
 

@@ -21,8 +21,6 @@ else {
 
 }
 
-
-
 $jsonArray = json_encode($resultArray);
 ?>
 
@@ -269,7 +267,7 @@ function setTrack(trackId, newPlaylist, play) {
 					</span>
 
 					<span class="artistName">
-						<span></span>
+						<span class="link"></span>
 					</span>
 
 				</div>
