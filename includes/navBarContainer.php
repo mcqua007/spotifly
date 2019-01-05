@@ -29,7 +29,7 @@
 			</div>
 
 			<div class="navItem">
-				<span role="link" tabindex="0" onclick="openPage('profile.php')"  class="navItemLink link">Reece Kenney</span>
+				<span role="link" tabindex="0" onclick="openPage('profile.php')"  class="navItemLink link"><?php echo $userLoggedIn; ?></span>
 			</div>
 		</div>
 

@@ -1,7 +1,7 @@
 <?php
 include("../../config.php");
   if(isset($_POST['albumId']) &&  isset($_POST['token'])){
-  if($_POST['token'] == "54219872kJL9Z&*KI9O@"){
+  if($_POST['token'] == $token){
 
      $albumId = $_POST['albumId'];
 

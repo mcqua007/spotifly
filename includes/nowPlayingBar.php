@@ -22,11 +22,15 @@ else {
 }
 
 $jsonArray = json_encode($resultArray);
+
 ?>
 
 <script>
 
+	var tokenPassword = "<?php echo $token; ?>";
+
 $(document).ready(function() {
+	console.log(tokenPassword);
 	var newPlaylist = <?php echo $jsonArray; ?>;
 	audioElement = new Audio();
 	setTrack(newPlaylist[0], newPlaylist, false);
@@ -192,7 +196,7 @@ function repeatToggle(){
 
 
 function setTrack(trackId, newPlaylist, play) {
-	var tokenPassword = "54219872kJL9Z&*KI9O@";
+
 
 	if(newPlaylist != currentPlaylist){
 		currentPlaylist = newPlaylist;
@@ -213,14 +217,18 @@ function setTrack(trackId, newPlaylist, play) {
 				  var track = JSON.parse(data);
 				 $(".trackName span").text(track.title);
 
+
 				 $.post("includes/handlers/ajax/getArtistJson.php", {artistId: track.artist, token: tokenPassword}, function(data){
 					 var artist = JSON.parse(data);
 					 $(".artistName span").text(artist.name);
+					 $(".artistName span").attr("onclick","openPage('artist.php?id=" + artist.id + "')");
 				 });
 
 				 $.post("includes/handlers/ajax/getAlbumJson.php", {albumId: track.album, token: tokenPassword}, function(data){
 					var album = JSON.parse(data);
 					$(".albumLink img").attr("src", album.artworkPath);
+					$(".albumLink img").attr("onclick","openPage('album.php?id=" + track.album + "')");
+					$(".trackName span").attr("onclick","openPage('album.php?id=" + track.album + "')");
 				});
 						audioElement.setTheTrack(track);
 						if(play == true) {
@@ -231,9 +239,9 @@ function setTrack(trackId, newPlaylist, play) {
 }
 
 	function playSong(){
-	var tokenPass = "54219872kJL9Z&*KI9O@";
+
 	  if(audioElement.audio.currentTime == 0){
-	   	$.post("includes/handlers/ajax/updatePlays.php", {songId: audioElement.currentlyPlaying.id, token: tokenPass});
+	   	$.post("includes/handlers/ajax/updatePlays.php", {songId: audioElement.currentlyPlaying.id, token: tokenPassword});
 	   }
 
 		$(".controlButton.play").hide();
@@ -256,18 +264,18 @@ function setTrack(trackId, newPlaylist, play) {
 
 		<div id="nowPlayingLeft">
 			<div class="content">
-				<span class="albumLink">
-					<img src="" class="albumArtwork">
+				<span class="albumLink link">
+					<img role="link" tabindex="0" src="" class="albumArtwork">
 				</span>
 
 				<div class="trackInfo">
 
 					<span class="trackName">
-						<span></span>
+						<span  role="link" tabindex="0"></span>
 					</span>
 
 					<span class="artistName">
-						<span class="link"></span>
+						<span  role="link" tabindex="0"></span>
 					</span>
 
 				</div>
