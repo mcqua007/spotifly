@@ -96,6 +96,18 @@ else {
       echo "<span class='noResults'> No songs found matching " . $term . "</span>";
     }
 
+    while($row = mysqli_fetch_array($artistQuery)) {
+        $artistFound = new Artist($con, $row['id']);
+
+        echo "<div class='searchResultRow'>
+                <span class='artist-Name' role='link' tabindex='0' onclick='openPage(\"artist.php?id=" . $artistFound->getId() . "\")'>"
+                . $artistFound->getName() .
+              "
+                </span>
+              </div>";
+
+        }
+
   ?>
 </div>
 
