@@ -1,0 +1,50 @@
+<html>
+    <head>
+      <script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
+    </head>
+    <body>
+      <img class="episode-img"/>
+      <ul>
+        <li>
+          <span class="title"></span><br />
+          <span class="pub-date"> </span>
+          <audio id="player" controls>
+            <source class="audio-src" type="audio/mpeg">
+          </audio>
+        </li>
+        <p class="description">
+
+        </p>
+      </ul>
+    </body>
+</html>
+<script>
+
+//feed to parse
+var feed = "https://feed.syntax.fm/rss";
+
+$.ajax(feed, {
+accepts:{
+  xml:"application/rss+xml"
+},
+dataType:"xml",
+success:function(data) {
+  $(data).find("item").each(function () { // or "item" or whatever suits your feed
+    var el = $(this);
+    $(".title").html(el.find("title").text());
+    $(".pub-date").html(el.find("pubDate").text());
+    $(".episode-img").attr("src", el.find("url").text());
+
+    var audio = $("#player");
+    $(".audio-src").attr("src", el.find("link").text());
+
+    audio[0].load();//suspends and restores all audio element
+    //audio[0].play(); changed based on Sprachprofi's comment below
+    //audio[0].oncanplaythrough = audio[0].play();
+
+    $(".description").html(el.find("description").text());
+  });
+ }
+});
+
+</script>
