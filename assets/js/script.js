@@ -15,8 +15,6 @@ function openPage(url){
 	if(timer != null) {
 		clearTimeout(timer);
 	}
-
-
 	if(url.indexOf("?") == -1){
 		url = url + "?";
 		var encodedUrl = encodeURI(url + "userLoggedIn=" + userLoggedIn);
@@ -29,6 +27,23 @@ function openPage(url){
 	$("body").scrollTop(0);
 
 	history.pushState(null, null, url); //puts the url in the adress bar so it appears the user is changing pages
+}
+
+function createPlaylist(){
+	var popup = prompt("Please enter the name of your playlist");
+
+	if(popup != null){
+		$.post("includes/handlers/ajax/createPlaylist.php", {name: popup, username: userLoggedIn}).done(
+			function(error){
+
+				if(error != ""){
+					alert(error);
+					return;
+				}
+				//do something when ajax returns
+				openPage("yourMusic.php");
+			})
+	}
 }
 
 function formatTime(seconds) {
