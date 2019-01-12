@@ -1,67 +1,64 @@
 <?php
+
 include("includes/includedFiles.php");
 
 if(isset($_GET['term'])) {
-	$term = urldecode($_GET['term']);
+
+  $term = urldecode($_GET['term']);
+  echo $term;
 }
+
 else {
-	$term = "";
+  $term = "";
 }
+
 ?>
 
 <div class="searchContainer">
-
-	<h4>Search for an artist, album or song</h4>
-	<input type="text" class="searchInput" value="<?php echo $term; ?>" placeholder="Start typing..." onfocus="this.value = this.value">
-
+  <h4> Search for an artist, album, or song</h4>
+  <input type="text" class="searchInput" value="<?php echo $term; ?>" placeholder="Start Typing..." onfocus="var val=this.value; this.value=''; this.value= val;" >
 </div>
 
 <script>
 
-$(".searchInput").focus();
+$(function(){
+        $(".searchInput").keyup(function() {
+            clearTimeout(timer);
 
-$(function() {
+            timer = setTimeout(function() {
+                var val = $(".searchInput").val();
+                openPage("search.php?term=" + val);
+            }, 1500);
 
-	$(".searchInput").keyup(function() {
-		clearTimeout(timer);
-
-		timer = setTimeout(function() {
-			var val = $(".searchInput").val();
-			openPage("search.php?term=" + val);
-		}, 2000);
-
-	})
-
-
-})
+        });
+         $(".searchInput").focus();
+    });
 
 </script>
 
-<?php if($term == "") exit(); ?>
 
-<div class="tracklistContainer borderBottom">
-	<h2>SONGS</h2>
+<div class="tracklistContainer borderbottom">
+  <h2> Top Songs </h2>
 	<ul class="tracklist">
 
 		<?php
-		$songsQuery = mysqli_query($con, "SELECT id FROM songs WHERE title LIKE '$term%' LIMIT 10");
 
-		if(mysqli_num_rows($songsQuery) == 0) {
-			echo "<span class='noResults'>No songs found matching " . $term . "</span>";
-		}
+    $songsQuery = mysqli_query($con, "SELECT id FROM songs WHERE title LIKE '%$term%' LIMIT 15");
 
 
+    if(mysqli_num_rows($songsQuery) == 0){
+      echo "<span class='noResults'> No songs found matching " . $term . "</span>";
+    }
 
 		$songIdArray = array();
 
 		$i = 1;
-		while($row = mysqli_fetch_array($songsQuery)) {
+	while($row = mysqli_fetch_array($songsQuery)) {
+      if( $i > 15 ){
+        break;
+      }
 
-			if($i > 15) {
-				break;
-			}
-
-			array_push($songIdArray, $row['id']);
+      array_push($songIdArray, $row['id']);
 
 			$albumSong = new Song($con, $row['id']);
 			$albumArtist = $albumSong->getArtist();
@@ -90,52 +87,46 @@ $(function() {
 				</li>";
 
 			$i = $i + 1;
+
+
+
 		}
 
 		?>
 
 		<script>
-			var tempSongIds = '<?php echo json_encode($songIdArray); ?>';
-			tempPlaylist = JSON.parse(tempSongIds);
+		var tempSongIds = '<?php echo json_encode($songIdArray); ?>';
+		tempPlaylist = JSON.parse(tempSongIds);
+
+
 		</script>
 
 	</ul>
 </div>
 
+<div class="artistContainer borderbottom">
+  <h2>Artists</h2>
+  <?php
 
-<div class="artistsContainer borderBottom">
+    $artistQuery = mysqli_query($con, "SELECT id FROM artists WHERE name LIKE '%$term%' LIMIT 10");
 
-	<h2>ARTISTS</h2>
+    if(mysqli_num_rows($artistQuery) == 0){
+      echo "<span class='noResults'> No songs found matching " . $term . "</span>";
+    }
 
-	<?php
-	$artistsQuery = mysqli_query($con, "SELECT id FROM artists WHERE name LIKE '$term%' LIMIT 10");
+    while($row = mysqli_fetch_array($artistQuery)) {
+        $artistFound = new Artist($con, $row['id']);
 
-	if(mysqli_num_rows($artistsQuery) == 0) {
-		echo "<span class='noResults'>No artists found matching " . $term . "</span>";
-	}
+        echo "<div class='searchResultRow'>
+                <span class='artist-Name' role='link' tabindex='0' onclick='openPage(\"artist.php?id=" . $artistFound->getId() . "\")'>"
+                . $artistFound->getName() .
+              "
+                </span>
+              </div>";
 
-	while($row = mysqli_fetch_array($artistsQuery)) {
+        }
 
-		$artistFound = new Artist($con, $row['id']);
-
-		echo "<div class='searchResultRow'>
-				<div class='artistName'>
-
-					<span role='link' tabindex='0' onclick='openPage(\"artist.php?id=" . $artistFound->getId() ."\")'>
-					"
-					. $artistFound->getName() .
-					"
-					</span>
-
-				</div>
-
-			</div>";
-
-	}
-
-
-	?>
-
+  ?>
 </div>
 
 <div class="gridViewContainer">

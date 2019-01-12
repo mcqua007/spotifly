@@ -8,6 +8,7 @@ var mute = false;
 var repeat = false;
 var shuffle = false;
 var userLoggedIn;
+var timer;
 
 function openPage(url){
 
