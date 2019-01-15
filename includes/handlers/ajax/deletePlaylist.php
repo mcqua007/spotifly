@@ -1,18 +1,17 @@
 <?php
 include("../../config.php");
 
-if(isset($_POST['name']) && isset($_POST['username'])){
+if(isset($_POST['playlistId'])){
 
 
-   $name = $_POST['name'];
-   $username = $_POST['username'];
-   $date = date("Y-m-d");
+   $playlistId = $_POST['playlistId'];
 
-   $query = mysqli_query($con, "INSERT INTO playlists VALUES('', '$name', '$username', '$date')");
+   $playlistQuery = mysqli_query($con, "DELETE FROM playlists WHERE id = '$playlistId'");
+   $songsQuery = mysqli_query($con, "DELETE FROM playlistSongs WHERE playlistId = '$playlistId'");
 
 }
 
 else {
-  echo "Name or username parameters are not passed into file";
+  echo "PlaylistId was not passed into deletePLaylsit.php";
 }
  ?>
