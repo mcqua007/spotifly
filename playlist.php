@@ -56,7 +56,7 @@ $owner = new User($con, $playlist->getOwner());
 					</div>
 
 					<div class='trackOptions'>
-						<img class='optionsButton' src='assets/images/icons/more.png'>
+						<img class='optionsButton'  role='link' src='assets/images/icons/more.png'>
 					</div>
 
 					<div class='trackDuration'>
