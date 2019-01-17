@@ -20,15 +20,25 @@ $(document).click(function(click){
 //if scroll after oipening options menu hide it
 $(window).scroll(function(){
 	hideOptionsMenu();
+
 });
 
-
+//on change of the song options menu get songId nd ajx post to save in playlistSongs
 $(document).on("change", "select.playlist", function() {
-	var playlistId = $(this).val();
-	var songId = $(this).prev(".songId").val();
+	var select = $(this);
+	var playlistId = select.val();
+	var songId = select.prev(".songId").val();
 
-	console.log("playlistId: " + playlistId);
-	console.log("songId: " + songId);
+	$.post("includes/handlers/ajax/addToPlaylist.php", {playlistId: playlistId, songId: songId}).done(function(error){
+		//shows error if there is any
+		if(error != ""){
+			alert(error);
+			return;
+		}
+			hideOptionsMenu();
+			//change the select to default, "add to playlist"
+			select.val(""); //since the add to playlsit options value is set to an empty string, this sets it back to that option
+	});
 });
 
 
