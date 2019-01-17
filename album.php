@@ -81,9 +81,10 @@ $artist = $album->getArtist();
 </div>
 
 <nav class="optionsMenu">
-	 <input type="hidden" class="songId" />
+
 	 <div class="add-playlist-row">
 		<i class="fa fa-plus" style="width:5%; padding-left:5px; color:rgba(147, 147, 147, 0.8);"></i>
+		 <input type="hidden" class="songId">
 		<?php echo Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername()); ?>
 	 </div>
 	  <div class="item"> Item 2	</div>
