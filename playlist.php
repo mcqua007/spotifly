@@ -56,8 +56,8 @@ $owner = new User($con, $playlist->getOwner());
 					</div>
 
 					<div class='trackOptions'>
-					<input type='hidden' class='songId' value='" . $playlistSong->getId() . "' />
-						<img class='optionsButton' src='assets/images/icons/more.png' role='link' onclick='showOptionsMenu(this)'>
+						<input type='hidden' class='songId' value='" . $playlistSong->getId() . "'>
+						<img class='optionsButton' src='assets/images/icons/more.png' onclick='showOptionsMenu(this)'>
 					</div>
 
 					<div class='trackDuration'>
@@ -80,12 +80,11 @@ $owner = new User($con, $playlist->getOwner());
 	</ul>
 </div>
 <nav class="optionsMenu">
-
 	 <div class="add-playlist-row">
 		<i class="fa fa-plus" style="width:5%; padding-left:5px; color:rgba(147, 147, 147, 0.8);"></i>
-		 <input type="hidden" class="songId">
+		 <input type="hidden" class="songId" id="options-songId">
 		<?php echo Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername()); ?>
 	 </div>
-	  <div class="item"> Item 2	</div>
+	 <div class="item" onclick="removeFromPlaylist(this, '<?php echo $playlistId; ?>')">Remove from Playlist</div>
 		<div class="item"> Item 3 </div>
 </nav>
