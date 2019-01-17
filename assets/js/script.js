@@ -9,8 +9,18 @@ var repeat = false;
 var shuffle = false;
 var userLoggedIn;
 var timer;
+// if click out of options menu it will disappear
+$(document).click(function(click){
+	var target = $(click.target);
 
-
+	if (!target.hasClass("item") && ! target.hasClass("optionsButton")){
+		hideOptionsMenu();
+	}
+});
+//if scroll after oipening options menu hide it
+$(window).scroll(function(){
+	hideOptionsMenu();
+});
 function openPage(url){
 
 	if(timer != null) {
@@ -63,6 +73,12 @@ function deletePlaylist(playlistId) {
 	}
 }
 
+function hideOptionsMenu(){
+	var menu = $(".optionsMenu");
+	if(menu.css("display") != "none"){
+		menu.css("display", "none");
+	}
+}
 function showOptionsMenu(button){
   var menu = $(".optionsMenu");
 	var menuWidth = menu.width();
@@ -75,6 +91,7 @@ function showOptionsMenu(button){
 	menu.css({"top": top + "px", "left": left + "px", "display": "inline"});
 
 }
+
 
 function formatTime(seconds) {
 	var time = Math.round(seconds);
