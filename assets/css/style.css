@@ -16,6 +16,9 @@ body {
     font-size: 14px;
     min-width: 720px;
 }
+.userInfo h1 {
+	text-align: center;
+}
 .optionsMenu .item:hover {
     color: #fff;
     background-color: #333;
@@ -35,7 +38,9 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
+.userInfo h1 {
 
+}
 .optionsMenu {
     position: fixed;
     background-color: #282828;
