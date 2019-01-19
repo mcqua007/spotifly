@@ -29,7 +29,7 @@
 			</div>
 
 			<div class="navItem">
-				<span role="link" tabindex="0" onclick="openPage('profile.php')"  class="navItemLink link"><?php echo $userLoggedIn; ?></span>
+				<span role="link" tabindex="0" onclick="openPage('settings.php')"  class="navItemLink link"><i role="link" class="fa fa-gear navItemLink link"></i> <?php echo $userLoggedIn->getFirstAndLastName(); ?></span>
 			</div>
 		</div>
 
