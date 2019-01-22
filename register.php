@@ -45,7 +45,7 @@
 	}
 
 	?>
-	
+
 
 	<div id="background">
 
@@ -57,7 +57,7 @@
 					<p>
 						<?php echo $account->getError(Constants::$loginFailed); ?>
 						<label for="loginUsername">Username</label>
-						<input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. bartSimpson" value="<?php getInputValue('loginUsername') ?>" required>
+						<input id="loginUsername" name="loginUsername" type="text" placeholder="Your username" value="<?php getInputValue('loginUsername') ?>" required>
 					</p>
 					<p>
 						<label for="loginPassword">Password</label>
@@ -69,7 +69,7 @@
 					<div class="hasAccountText">
 						<span id="hideLogin">Don't have an account yet? Signup here.</span>
 					</div>
-					
+
 				</form>
 
 
@@ -126,7 +126,7 @@
 					<div class="hasAccountText">
 						<span id="hideRegister">Already have an account? Log in here.</span>
 					</div>
-					
+
 				</form>
 
 
