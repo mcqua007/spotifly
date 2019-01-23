@@ -475,6 +475,22 @@ input:focus {
     display: block;
 }
 
+.tracklistRow .trackHeart{
+    width: 5%;
+    float: left;
+}
+
+.normalHeart{
+ color:#cccccc85;
+}
+.tracklistRow .trackHeart{
+    width: 15px;
+    visibility: hidden;
+}
+
+.tracklistRow:hover .trackHeart{
+    visibility: visible;
+}
 .tracklistRow .trackOptions {
     width: 5%;
     float: left;

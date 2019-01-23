@@ -41,6 +41,14 @@ $(document).on("change", "select.playlist", function() {
 	});
 });
 
+function likeSong(id){
+	console.log(id);
+
+	$.post("includes/handlers/ajax/updateLikes.php", {songId : id, username: userLoggedIn}).done(function(response){
+	console.log(response);
+	});
+}
+
 function updateEmail(emailClass){
 	var emailValue = $("." + emailClass).val();
 

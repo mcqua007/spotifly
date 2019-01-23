@@ -51,6 +51,13 @@ $artist = $album->getArtist();
 						<span class='artistName'>" . $albumArtist->getName() . "</span>
 					</div>
 
+					<div class='trackHeart'>
+					<input type='hidden' class='songId' value='" . $albumSong->getId() . "' />
+						<div class='normalHeart' role='link' onclick='likeSong(" . $albumSong->getId() .")'>
+							<i class='fa fa-heart'></i>
+						</div>
+					</div>
+
 					<div class='trackOptions'>
 					<input type='hidden' class='songId' value='" . $albumSong->getId() . "' />
 						<img class='optionsButton' src='assets/images/icons/more.png' role='link' onclick='showOptionsMenu(this)'>
