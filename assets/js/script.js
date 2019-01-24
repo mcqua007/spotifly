@@ -41,11 +41,31 @@ $(document).on("change", "select.playlist", function() {
 	});
 });
 
-function likeSong(id){
-	console.log(id);
+function likeSong(heartIcon, id){
+  var data = $(heartIcon).attr("data-liked");
+	var nextState;
 
-	$.post("includes/handlers/ajax/updateLikes.php", {songId : id, username: userLoggedIn}).done(function(response){
-	console.log(response);
+	console.log("data-liked: "+ data);
+	if(data == "true"){
+		console.log("its true");
+		nextState = "false";
+	}
+	else if(data == "false"){
+		console.log("its false");
+		nextState = "true";
+	}
+	console.log("opposite: "+ nextState);
+
+
+	$.post("includes/handlers/ajax/updateLikes.php", {songId : id, username: userLoggedIn, like: nextState }).done(function(response){
+	  if(response == "deleted"){
+			$(heartIcon).attr("data-liked", "false");
+			$(heartIcon).removeClass("likedHeart");
+		}
+		else{
+			$(heartIcon).attr("data-liked", "true");
+ 			$(heartIcon).addClass("likedHeart");
+		}
 	});
 }
 

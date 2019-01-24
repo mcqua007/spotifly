@@ -9,6 +9,20 @@ else {
 
 $album = new Album($con, $albumId);
 $artist = $album->getArtist();
+
+//Like Section
+
+$likedUserId = $userLoggedIn->getUserId();
+$likedQuery = mysqli_query($con, "SELECT * FROM userLikedSongs WHERE userId = '$likedUserId'");
+
+$likedArray = array();
+
+while($row = mysqli_fetch_array($likedQuery)) {
+	array_push($likedArray, $row['songId']);
+	echo $row['songId'];
+}
+
+
 ?>
 
 <div class="entityInfo">
@@ -39,23 +53,30 @@ $artist = $album->getArtist();
 			$albumSong = new Song($con, $songId);
 			$albumArtist = $albumSong->getArtist();
 
-			echo "<li class='tracklistRow'>
+			 echo "<li class='tracklistRow'>
 					<div class='trackCount'>
 						<img class='play' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
 						<span class='trackNumber'>$i</span>
 					</div>
 
-
 					<div class='trackInfo'>
 						<span class='trackName'>" . $albumSong->getTitle() . "</span>
 						<span class='artistName'>" . $albumArtist->getName() . "</span>
 					</div>
+					<div class='trackHeart'>";
 
-					<div class='trackHeart'>
-					<input type='hidden' class='songId' value='" . $albumSong->getId() . "' />
-						<div class='normalHeart' role='link' onclick='likeSong(" . $albumSong->getId() .")'>
-							<i class='fa fa-heart'></i>
-						</div>
+
+					if (in_array($albumSong->getId(), $likedArray) == true){
+					 echo "<div class='normalHeart likedHeart' role='link' data-liked='true' onclick='likeSong(this," . $albumSong->getId() .")'>
+							   <i class='fa fa-heart'></i>
+						    </div>";
+					}
+          else{
+						echo "<div class='normalHeart' role='link' data-liked='false' onclick='likeSong(this," . $albumSong->getId() .")'>
+							  <i class='fa fa-heart'></i>
+					   	</div>";
+						}
+					echo "
 					</div>
 
 					<div class='trackOptions'>

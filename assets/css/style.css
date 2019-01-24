@@ -6,15 +6,17 @@ html, body {
 
 * {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: #fff;
+
     letter-spacing: 1px;
-	outline: none;
+	  outline: none;
+
 }
 
 body {
     background-color: #181818;
     font-size: 14px;
     min-width: 720px;
+			  color: #fff;
 }
 
 
@@ -482,6 +484,10 @@ input:focus {
 
 .normalHeart{
  color:#cccccc85;
+}
+
+.normalHeart.likedHeart{
+	color: #de0505;
 }
 .tracklistRow .trackHeart{
     width: 15px;
