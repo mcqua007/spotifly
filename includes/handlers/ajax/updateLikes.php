@@ -31,7 +31,7 @@ include("../../config.php");
 
    }
    else {
-     echo "Not Authorized to make AJAX call!";
+     echo "Something went wrong, please try again later!";
    }
 
 

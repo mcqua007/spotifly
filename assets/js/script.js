@@ -47,14 +47,12 @@ function likeSong(heartIcon, id){
 
 	console.log("data-liked: "+ data);
 	if(data == "true"){
-		console.log("its true");
 		nextState = "false";
 	}
 	else if(data == "false"){
-		console.log("its false");
 		nextState = "true";
 	}
-	console.log("opposite: "+ nextState);
+
 
 
 	$.post("includes/handlers/ajax/updateLikes.php", {songId : id, username: userLoggedIn, like: nextState }).done(function(response){
@@ -62,9 +60,12 @@ function likeSong(heartIcon, id){
 			$(heartIcon).attr("data-liked", "false");
 			$(heartIcon).removeClass("likedHeart");
 		}
-		else{
+		else if(response =="liked"){
 			$(heartIcon).attr("data-liked", "true");
  			$(heartIcon).addClass("likedHeart");
+		}
+		else{
+			alert(response);
 		}
 	});
 }
