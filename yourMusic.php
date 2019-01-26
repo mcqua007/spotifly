@@ -4,7 +4,7 @@ include("includes/includedFiles.php");
 
 <div class="playlistsContainer ">
 
-	<div class="gridViewContainer">
+	<div class="gridViewContainer borderbottom">
 		<h2>PLAYLISTS </h2>
 
 		<div class="buttonItems">
@@ -35,5 +35,76 @@ include("includes/includedFiles.php");
 		?>
 
 	</div>
+
+	<?php
+	//Like Section
+
+	$likedUserId = $userLoggedIn->getUserId();
+	$likedQuery = mysqli_query($con, "SELECT * FROM userLikedSongs WHERE userId = '$likedUserId'");
+
+	$likedArray = array();
+
+	while($row = mysqli_fetch_array($likedQuery)) {
+		array_push($likedArray, $row['songId']);
+	}
+
+	?>
+
+	<div class="gridViewContainer borderbottom">
+		<h2>LIKED SONGS </h2>
+
+	<div class="tracklistContainer">
+		<ul class="tracklist">
+
+			<?php
+
+
+			$i = 1;
+			foreach($likedArray as $songId) {
+
+				$albumSong = new Song($con, $songId);
+				$albumArtist = $albumSong->getArtist();
+
+				 echo "<li class='tracklistRow'>
+						<div class='trackCount'>
+							<img class='play' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
+							<span class='trackNumber'>$i</span>
+						</div>
+
+						<div class='trackInfo'>
+							<span class='trackName'>" . $albumSong->getTitle() . "</span>
+							<span class='artistName'>" . $albumArtist->getName() . "</span>
+						</div>
+						<div class='trackHeart'>
+						</div>
+
+						<div class='trackOptions'>
+						<input type='hidden' class='songId' value='" . $albumSong->getId() . "' />
+							<img class='optionsButton' src='assets/images/icons/more.png' role='link' onclick='showOptionsMenu(this)'>
+						</div>
+
+						<div class='trackDuration'>
+							<span class='duration'>" . $albumSong->getDuration() . "</span>
+						</div>
+
+
+					</li>";
+
+				$i = $i + 1;
+
+			}
+
+			?>
+
+			<script>
+			var tempSongIds = '<?php echo json_encode($songIdArray); ?>';
+			tempPlaylist = JSON.parse(tempSongIds);
+
+			</script>
+
+		</ul>
+	</div>
+</div>
+
 
 </div>
