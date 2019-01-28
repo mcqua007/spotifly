@@ -59,7 +59,6 @@ else {
 </div>
 
 <nav class="optionsMenu">
-
 	 <div class="add-playlist-row">
 		<i class="fa fa-plus" style="width:5%; padding-left:5px; color:rgba(147, 147, 147, 0.8);"></i>
 		 <input type="hidden" class="songId">
