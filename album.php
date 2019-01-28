@@ -26,7 +26,9 @@ $artist = $album->getArtist();
 
 </div>
 <!-- tracklist section -->
-<?php include("includes/controllers/tracklist.php"); ?>
+<?php
+displayTracks($con, $userLoggedIn, $album->getSongIds());
+?>
 <nav class="optionsMenu">
 
 	 <div class="add-playlist-row">

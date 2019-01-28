@@ -1,5 +1,6 @@
 <?php
 //Like Section
+function displayTracks($con, $userLoggedIn, $songIdArray, $displayLimit = 0){
 
 $likedUserId = $userLoggedIn->getUserId();
 $likedQuery = mysqli_query($con, "SELECT * FROM userLikedSongs WHERE userId = '$likedUserId'");
@@ -15,10 +16,16 @@ while($row = mysqli_fetch_array($likedQuery)) {
 	<ul class="tracklist">
 
 		<?php
-		$songIdArray = $album->getSongIds();
 
 		$i = 1;
 		foreach($songIdArray as $songId) {
+			//if display limit is not set execute the following code
+			if($displayLimit != 0){
+				if( $i > $displayLimit){
+					break;
+				}
+			}
+
 
 			$albumSong = new Song($con, $songId);
 			$albumArtist = $albumSong->getArtist();
@@ -75,3 +82,4 @@ while($row = mysqli_fetch_array($likedQuery)) {
 
 	</ul>
 </div>
+<?php } ?>
