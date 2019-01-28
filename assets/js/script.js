@@ -41,6 +41,14 @@ $(document).on("change", "select.playlist", function() {
 	});
 });
 
+function addSong(songId, userId){
+	console.log(songId);
+	//$.post("includes/handlers/ajax/addSong.php", {albumId : songId, userId: userId}).done(function(data){
+	//  alert(data);
+	//});
+}
+
+
 function addAlbum(albumId, userId){
 	$.post("includes/handlers/ajax/addAlbum.php", {albumId : albumId, userId: userId}).done(function(data){
 	  alert(data);
