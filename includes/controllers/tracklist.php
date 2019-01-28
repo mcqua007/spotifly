@@ -55,6 +55,7 @@ while($row = mysqli_fetch_array($likedQuery)) {
 					</div>
 					<div class='totalLikes'>
 						<div class='total-like-text-". $albumSong->getId() . "'>
+						". $albumSong->getNumberOfLikes() . "
 						</div>
 					</div>
 
