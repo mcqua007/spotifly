@@ -10,6 +10,7 @@
 		private $genre;
 		private $duration;
 		private $path;
+		private $numberOfLikes;
 
 		public function __construct($con, $id) {
 			$this->con = $con;
@@ -23,6 +24,7 @@
 			$this->genre = $this->mysqliData['genre'];
 			$this->duration = $this->mysqliData['duration'];
 			$this->path = $this->mysqliData['path'];
+			$this->numberOfLikes = $this->mysqliData['numberOfLikes'];
 		}
 
 		public function getId() {
@@ -55,6 +57,9 @@
 
 		public function getGenre() {
 			return $this->genre;
+		}
+		public function getNumberOfLikes() {
+			return $this->numberOfLikes;
 		}
 
 	}
