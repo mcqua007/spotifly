@@ -41,8 +41,6 @@ while($row = mysqli_fetch_array($likedQuery)) {
 						<span class='artistName'>" . $albumArtist->getName() . "</span>
 					</div>
 					<div class='trackHeart'>";
-
-
 					if (in_array($albumSong->getId(), $likedArray) == true){
 					 echo "<div class='normalHeart likedHeart' role='link' data-liked='true' onclick='likeSong(this," . $albumSong->getId() .")'>
 							   <i class='fa fa-heart'></i>
@@ -54,6 +52,10 @@ while($row = mysqli_fetch_array($likedQuery)) {
 					   	</div>";
 						}
 					echo "
+					</div>
+					<div class='totalLikes'>
+						<div class='total-like-text-". $albumSong->getId() . "'>
+						</div>
 					</div>
 
 					<div class='trackOptions'>

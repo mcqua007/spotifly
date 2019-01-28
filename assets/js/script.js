@@ -68,6 +68,12 @@ function likeSong(heartIcon, id){
 			alert(response);
 		}
 	});
+
+  var totalLikes = "true";
+	$.post("includes/handlers/ajax/updateLikes.php", {songId : id, total: totalLikes}).done(function(data){
+		var totalClass = ".total-like-text-" + id;
+		$(totalClass).text(data);
+	});
 }
 
 function updateEmail(emailClass){

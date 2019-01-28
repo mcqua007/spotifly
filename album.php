@@ -9,6 +9,8 @@ else {
 
 $album = new Album($con, $albumId);
 $artist = $album->getArtist();
+
+
 ?>
 
 <div class="entityInfo">
