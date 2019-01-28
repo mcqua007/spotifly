@@ -23,6 +23,10 @@ $artist = $album->getArtist();
 		<h2><?php echo $album->getTitle(); ?></h2>
 		<p role="link" tabindex="0" onclick="openPage('artist.php>id=$artistId')">By <?php echo $artist->getName(); ?></p>
 		<p><?php echo $album->getNumberOfSongs(); ?> songs</p>
+		<button class="add-album button" onclick="addAlbum(<?php echo $albumId;?>, <?php echo $userLoggedIn->getUserId(); ?> )">
+			Add  Album
+		</button>
+		<span class="flash-message"></span>
 
 	</div>
 
