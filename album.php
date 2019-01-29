@@ -44,7 +44,7 @@ displayTracks($con, $userLoggedIn, $album->getSongIds());
 	 <!-- Not Right FIX -->
 	 <input type="hidden" class="songId">
 	 <div class="item" role="link" onclick="addSong(this,<?php echo $userLoggedIn->getUserId(); ?> )">
-		 Add  Song
+		  Add to Library
 	 </div>
 		<div class="item"> Item 3 </div>
 </nav>
