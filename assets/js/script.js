@@ -70,23 +70,20 @@ function likeSong(heartIcon, id){
 
 
 	$.post("includes/handlers/ajax/updateLikes.php", {songId : id, username: userLoggedIn, like: nextState }).done(function(response){
-	  if(response == "deleted"){
+	  if(nextState == "false"){
 			$(heartIcon).attr("data-liked", "false");
 			$(heartIcon).removeClass("likedHeart");
 		}
-		else if(response =="liked"){
+		else if(nextState =="true"){
 			$(heartIcon).attr("data-liked", "true");
  			$(heartIcon).addClass("likedHeart");
 		}
 		else{
 			alert(response);
 		}
-	});
 
-  var totalLikes = "true";
-	$.post("includes/handlers/ajax/updateLikes.php", {songId : id, total: totalLikes}).done(function(data){
 		var totalClass = ".total-like-text-" + id;
-		$(totalClass).text(data);
+		$(totalClass).text(response);
 	});
 }
 
