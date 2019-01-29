@@ -24,6 +24,7 @@ $(window).scroll(function(){
 });
 
 //on change of the song options menu get songId nd ajx post to save in playlistSongs
+//Add Songs To laylist Code
 $(document).on("change", "select.playlist", function() {
 	var select = $(this);
 	var playlistId = select.val();
@@ -41,11 +42,14 @@ $(document).on("change", "select.playlist", function() {
 	});
 });
 
-function addSong(songId, userId){
+function addSong(click, userId){
+	var select = $(click);
+	var songId = select.prev(".songId").val();
 	console.log(songId);
-	//$.post("includes/handlers/ajax/addSong.php", {albumId : songId, userId: userId}).done(function(data){
-	//  alert(data);
-	//});
+	console.log(userId);
+	$.post("includes/handlers/ajax/addSong.php", {songId : songId, userId: userId}).done(function(response){
+	alert(response);
+	});
 }
 
 

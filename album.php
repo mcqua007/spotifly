@@ -42,7 +42,8 @@ displayTracks($con, $userLoggedIn, $album->getSongIds());
 		<?php echo Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername()); ?>
 	 </div>
 	 <!-- Not Right FIX -->
-	 <div class="item" role="link" onclick="addSong(<?php echo $songId;?>, <?php echo $userLoggedIn->getUserId(); ?> )">
+	 <input type="hidden" class="songId">
+	 <div class="item" role="link" onclick="addSong(this,<?php echo $userLoggedIn->getUserId(); ?> )">
 		 Add  Song
 	 </div>
 		<div class="item"> Item 3 </div>

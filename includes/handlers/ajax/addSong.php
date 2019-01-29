@@ -2,7 +2,7 @@
 include("../../config.php");
 
   if(isset($_POST['songId']) &&  isset($_POST['userId'])){
-    $albumId = $_POST['songId'];
+    $songId = $_POST['songId'];
     $userId =  $_POST['userId'];
     $addQuery = mysqli_query($con, "INSERT INTO userSongs VALUES('', '$userId', '$songId')");
 
