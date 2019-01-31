@@ -33,13 +33,13 @@
 							 		<span role="link" tabindex="0" onclick="openPage('yourPlaylist.php')"  class="navItemLink link">Playlists</span>
 							 </div>
 							 <div class="navItem">
-								 <span role="link" tabindex="0" onclick="openPage('settings.php')"  class="navItemLink link">Artists</span>
+								 <span role="link" tabindex="0" onclick="openPage('library-artist.php')"  class="navItemLink link">Artists</span>
 							 </div>
 							 <div class="navItem">
-								 <span role="link" tabindex="0" onclick="openPage('settings.php')"  class="navItemLink link">Albums</span>
+								 <span role="link" tabindex="0" onclick="openPage('library-album.php')"  class="navItemLink link">Albums</span>
 							 </div>
 							 <div class="navItem">
-								 <span role="link" tabindex="0" onclick="openPage('settings.php')"  class="navItemLink link">Songs</span>
+								 <span role="link" tabindex="0" onclick="openPage('library-songs.php')"  class="navItemLink link">Songs</span>
 							 </div>
 						 </div>
 					</div>
