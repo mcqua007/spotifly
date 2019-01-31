@@ -42,6 +42,28 @@ $(document).on("change", "select.playlist", function() {
 	});
 });
 
+function showLibraryMenu(click){
+	console.log("click");
+
+	var visible = $("#library-menu").attr("data-collapsed");
+	if(visible == "false"){
+		console.log("show");
+		$("#library-menu").show("slow");
+		$("#library-menu").attr("data-collapsed", "true");
+		$("#library-menu-icon").removeClass("fa-caret-down");
+		$("#library-menu-icon").addClass("fa-caret-up");
+	}
+	else{
+		console.log("hide");
+		$("#library-menu").hide("slow");
+			$("#library-menu").attr("data-collapsed", "false");
+			$("#library-menu-icon").removeClass("fa-caret-up");
+			$("#library-menu-icon").addClass("fa-caret-down");
+	}
+
+
+}
+
 function addSong(click, userId){
 	var select = $(click);
 	var songId = select.prev(".songId").val();

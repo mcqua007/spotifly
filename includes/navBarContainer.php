@@ -25,8 +25,25 @@
 			</div>
 
 			<div class="navItem">
-				<span role="link" tabindex="0" onclick="openPage('yourPlaylist.php')"  class="navItemLink link">Your Playlists</span>
-			</div>
+				<div role="link" tabindex="0" onclick="showLibraryMenu(this)"  class="navItemLink link">Library <i class="fa fa-caret-down m-left-5" style="font-size:16px;" id="library-menu-icon"></i></div>
+				<div class="" id="library-menu" data-collapsed="false" style="display:none;">
+					<div class="bordertop" style="margin-top:10px;"></div>
+				     <div class="m-left-10">
+							 <div class="navItem push-top-5">
+							 		<span role="link" tabindex="0" onclick="openPage('yourPlaylist.php')"  class="navItemLink link">Playlists</span>
+							 </div>
+							 <div class="navItem">
+								 <span role="link" tabindex="0" onclick="openPage('settings.php')"  class="navItemLink link">Artists</span>
+							 </div>
+							 <div class="navItem">
+								 <span role="link" tabindex="0" onclick="openPage('settings.php')"  class="navItemLink link">Albums</span>
+							 </div>
+							 <div class="navItem">
+								 <span role="link" tabindex="0" onclick="openPage('settings.php')"  class="navItemLink link">Songs</span>
+							 </div>
+						 </div>
+					</div>
+				</div>
 
 			<div class="navItem">
 				<span role="link" tabindex="0" onclick="openPage('settings.php')"  class="navItemLink link"><i role="link" class="fa fa-gear navItemLink link"></i> <?php echo $userLoggedIn->getFirstAndLastName(); ?></span>
