@@ -18,48 +18,18 @@ $userId = $userLoggedIn->getUserId();
 <h2> Albums </h2>
 	<?php
 		$userAlbumQuery = mysqli_query($con, "SELECT * FROM userAlbums WHERE userId = '$userId'");
-    $userRow = mysqli_fetch_array($userAlbumQuery);
-    $userRow['albumId'];
-
-    $albumIdArray = array();
-
-  while($userRow= mysqli_fetch_array($userAlbumQuery)) {
-
-          $albumId = $userRow['albumId'];
-
-  }
+    while($userRow = mysqli_fetch_array($userAlbumQuery)) {;
+     echo  $userRow['albumId'];
+   }
 
 
-
-//fix below
-            while($row = $albumIdArray) {
-
-
-
-
-
-              echo "<div class='gridViewItem'>
-                  <span role='link' class='link' tabindex='0' onclick='openPage(\"album.php?id=" . $row['id'] . "\")'>
-                    <img src='" . $row['artworkPath'] . "'>
-
-                    <div class='gridViewInfo'>"
-                      . $row['title'] .
-                    "</div>
-                  </span>
-
-                </div>";
-
-
-
-            }
-// fix above
 	?>
 
 </div>
 <div class="tracklistContainer borderbottom">
   <h2> Top Songs </h2>
   <?php
-  // displayTracks($con, $userLoggedIn, $artist->getTopSongs(), 20);
+  displayTracks($con, $userLoggedIn, $artist->getTopSongs(), 20);
   ?>
 
 </div>
